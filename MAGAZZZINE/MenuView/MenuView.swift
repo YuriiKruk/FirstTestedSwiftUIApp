@@ -146,8 +146,6 @@ struct Menu: View {
             
             ZStack {
                 
-                //GeometryReader { _ in
-                
                 switch index {
                 case 0:
                     Catalogue(show: self.$show, sale: self.$sale, userOrder: self.userOrder)
@@ -155,11 +153,8 @@ struct Menu: View {
                     Orders(userOrder: self.userOrder, show: self.$show, sale: self.$sale)
                 case 2:
                     StoreAndNews(show: self.$show)
-                //Catalogue(show: self.$show, sale: self.$sale, userOrder: self.userOrder)
                 default: SaleGame(sale: self.$sale, show: self.$show)
                 }
-                
-                // }
                 
                 Button(action: {
                     withAnimation {
@@ -187,7 +182,6 @@ struct Menu: View {
 
 struct Catalogue: View {
     
-    // @State var show1 = true
     @State var show2 = false
     @State var showTop = 1
     @State var showDetail = false
@@ -195,13 +189,11 @@ struct Catalogue: View {
     @Binding var sale: Int
     
     @ObservedObject var userSale = Sale()
-    
+    @ObservedObject var userOrder: UsersOrder
     
     @State var assortment = Assortment().shoes
-    
     @State var curentModel = 0
     
-    @ObservedObject var userOrder: UsersOrder
     
     var body: some View {
         ZStack {
@@ -261,6 +253,7 @@ struct Catalogue: View {
                             Button(action: {
                                 
                                 self.curentModel = shoe.index
+                                
                                 
                             }) {
                                 GeometryReader { geometry in
@@ -376,7 +369,6 @@ struct Shoes: Identifiable {
     var id = UUID()
     let name: String
     let price: Int
-    
     let index: Int
 }
 
@@ -384,14 +376,12 @@ struct DetailView: View {
     
     @Binding var showDetail: Bool
     @Binding var curentModel: Int
-    
-    @State var assortment = Assortment().shoes
-    
-    let colorChoosenSizeButton = Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))
-    
     @ObservedObject var userOrder: UsersOrder
     
+    @State var assortment = Assortment().shoes
     @State var orderSize = "Розмір не вибрано"
+    
+    let colorChoosenSizeButton = Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))
     
     var body: some View {
         ZStack {
@@ -623,7 +613,6 @@ struct Orders: View {
                                         Text("with sale:")
                                             .font(.caption)
                                         Text("$\(c)")
-                                            //((100/sale)*item.price)+item.price
                                             .fontWeight(.bold)
                                             .foregroundColor(.red)
                                             .font(.system(size: 20))
@@ -958,9 +947,6 @@ struct StoreAndNews: View {
     }
 }
 
-
-
-
 struct StoreLocations: Identifiable {
     var id = UUID()
     var city: String
@@ -1050,7 +1036,7 @@ struct MapView: UIViewRepresentable {
             let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
             view.canShowCallout = true
             return view
-        } // Міняє вид піну
+        }
         
         init(_ parent: MapView) {
             self.parent = parent

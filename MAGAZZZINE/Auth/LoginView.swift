@@ -18,7 +18,7 @@ struct LoginView: View {
     
     @ObservedObject var userData: UsersData
     
-    @State var colorUIMagazzine = ColorUIMagazzine()
+    let colorUIMagazzine = ColorUIMagazzine()
     
     var body: some View {
         ZStack {
@@ -44,10 +44,10 @@ struct LoginView: View {
                     .font(.custom("American Typewriter", size: 20))
                     .foregroundColor(Color(colorUIMagazzine.signUp))
             }
-            .offset(y: -300) // Піднімаєм лого і текст
+            .offset(y: -300)
         }
     }
-} // Відображення вхід/реєстрація
+}
 
 struct SignIn: View {
     
@@ -87,6 +87,7 @@ struct SignIn: View {
                             .foregroundColor(Color(colorUIMagazzine.loginTextColor))
                         
                         TextField("Login", text: $userLogin)
+                            
                     }
                     
                     Divider()
@@ -292,13 +293,13 @@ struct SignUp: View {
             }
         }
     }
-} // Реєстрація
+}
 
 struct UsersLogin: Codable {
     var name: String
     var login: String
     var password: String
-} // Логін данні
+}
 
 class UsersData: ObservableObject {
     @Published var data = [UsersLogin]() {
@@ -318,7 +319,7 @@ class UsersData: ObservableObject {
             }
         }
     }
-} // Зберігання данних
+} 
 
 struct StartPage_Previews: PreviewProvider {
     static var previews: some View {
