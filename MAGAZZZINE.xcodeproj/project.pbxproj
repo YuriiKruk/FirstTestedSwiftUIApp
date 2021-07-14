@@ -112,12 +112,12 @@
 		DEAE2F592672956B005B97A0 /* MAGAZZZINE */ = {
 			isa = PBXGroup;
 			children = (
+				DEAE2F5E2672956B005B97A0 /* AppView.swift */,
 				DE783396269E4E15000E447D /* Auth */,
 				DE783395269E4C1C000E447D /* MenuView */,
 				DE783392269E43E4000E447D /* Extentions */,
-				DEAE2F5A2672956B005B97A0 /* AppDelegate.swift */,
-				DEAE2F5E2672956B005B97A0 /* AppView.swift */,
 				DE02627C267FFF3B00739870 /* RingView.swift */,
+				DEAE2F5A2672956B005B97A0 /* AppDelegate.swift */,
 				DEAE2F5C2672956B005B97A0 /* SceneDelegate.swift */,
 				DEAE2F602672956E005B97A0 /* Assets.xcassets */,
 				DEAE2F652672956E005B97A0 /* LaunchScreen.storyboard */,

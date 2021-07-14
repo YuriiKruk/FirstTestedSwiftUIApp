@@ -20,7 +20,7 @@ struct AppView: View {
             
             Menu(indexForMenu: self.$indexForMenu, userData: self.sharedUserData, userName: self.$userName)
             
-            LoginView(indexForMenu: self.$indexForMenu, userName: self.$userName, userData: self.sharedUserData) // Вю входу
+            LoginView(indexForMenu: self.$indexForMenu, userName: self.$userName, userData: self.sharedUserData)
                 .offset(y: self.indexForMenu == 1 ? 0 : -1000)
                 .animation(.spring(response: 1, dampingFraction: 1, blendDuration: 1))
             

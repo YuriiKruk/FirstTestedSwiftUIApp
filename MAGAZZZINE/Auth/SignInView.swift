@@ -69,7 +69,7 @@ struct SignIn: View {
                     
                     Button(action: {
                         
-                        for i in userData.data { // Перевірка вірності пароля
+                        for i in userData.data { 
                             if i.login.lowercased() == self.userLogin.lowercased() && i.password == self.userPassword {
                                 self.buttonSignIn = "Successfully"
                                 

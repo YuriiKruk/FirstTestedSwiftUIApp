@@ -19,6 +19,7 @@ struct StoreAndNewsView: View {
                                  StoreLocations(city: "London, UK", street: "st. Oxford, 236", coordinateLatitude: 51.53, coordinateLongitude: -0.14, index: 3),
                                  StoreLocations(city: "Rome, Italy", street: "st. Via del Corso, 171", coordinateLatitude: 41.89, coordinateLongitude: 12.50, index: 4)]
     @State var curentStore = 0
+    
     let buttonsize = CGFloat((UIScreen.main.bounds.width / 2) - 30)
     
     var body: some View {

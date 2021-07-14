@@ -25,7 +25,7 @@ struct CatalogueView: View {
     
     var body: some View {
         ZStack {
-            Color(#colorLiteral(red: 0.9311889594, green: 0.9311889594, blue: 0.9311889594, alpha: 1)) // Background color view
+            Color(#colorLiteral(red: 0.9311889594, green: 0.9311889594, blue: 0.9311889594, alpha: 1)) 
                 .edgesIgnoringSafeArea(.all)
                 .gesture(
                     DragGesture(minimumDistance: 0, coordinateSpace: .local)

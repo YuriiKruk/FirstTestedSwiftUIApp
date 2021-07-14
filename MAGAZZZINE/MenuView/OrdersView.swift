@@ -98,7 +98,7 @@ struct OrdersView: View {
             
         }
         .background(
-            Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) // Background color view
+            Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)) 
                 .edgesIgnoringSafeArea(.all)
                 .gesture(
                     DragGesture(minimumDistance: 0, coordinateSpace: .local)

@@ -46,10 +46,10 @@ struct Menu: View {
                     Image(systemName: self.show ? "xmark" : "line.horizontal.3")
                         .resizable()
                         .frame(width: self.show == true ? 25 : 22, height: self.show == true ? 25 : 22)
-                        
-                        // .frame(width: self.show ? 18 : 22, height: 18) - крашить! ВТФ???
+                        // .frame(width: self.show ? 18 : 22, height: 18) - crashed! why?
                         .foregroundColor(Color.black.opacity(0.4))
-                } .offset(x: self.show == true ? -177 : -177, y: self.show == true ? -420 : -380)
+                }
+                .offset(x: self.show == true ? -177 : -177, y: self.show == true ? -420 : -380)
             }
             .background(Color.white)
             .cornerRadius(self.show ? 30 : 0)
