@@ -24,128 +24,10 @@ struct Menu: View {
     
     var body: some View {
         ZStack {
-            HStack {
-                VStack(alignment: .leading, spacing: 12) {
-                    Image("UserAvatar1")
-                        .resizable()
-                        .frame(width: 250, height: 250)
-                        .clipShape(Circle())
-                    
-                    Text("Привіт,")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .padding(.top, 10)
-                    
-                    Text(userName)
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                    
-                    Button(action: {
-                        self.index = 0
-                        
-                        withAnimation {
-                            self.show.toggle()
-                        }
-                    }) {
-                        HStack(spacing: 25) {
-                            Image(systemName: "bookmark.circle.fill")
-                                .foregroundColor(self.index == 0 ? Color(colorDesign.buttonColor) : Color.white)
-                            Text("Каталог")
-                                .foregroundColor(self.index == 0 ? Color(colorDesign.buttonColor) : Color.white)
-                        }
-                        .padding(.vertical, 10)
-                        .padding(.horizontal)
-                        .background(self.index == 0 ? Color(colorDesign.buttonColor).opacity(0.2) : Color.clear)
-                        .cornerRadius(10)
-                    }
-                    .padding(.top, 25)
-                    
-                    Button(action: {
-                        self.index = 1
-                        
-                        withAnimation {
-                            self.show.toggle()
-                        }
-                    }) {
-                        HStack(spacing: 25) {
-                            Image(systemName: "bag.circle.fill")
-                                .foregroundColor(self.index == 1 ? Color(colorDesign.buttonColor) : Color.white)
-                            Text("Мої замовлення")
-                                .foregroundColor(self.index == 1 ? Color(colorDesign.buttonColor) : Color.white)
-                        }
-                        .padding(.vertical, 10)
-                        .padding(.horizontal)
-                        .background(self.index == 1 ? Color(colorDesign.buttonColor).opacity(0.2) : Color.clear)
-                        .cornerRadius(10)
-                    }
-                    Button(action: {
-                        self.index = 2
-                        
-                        withAnimation {
-                            self.show.toggle()
-                        }
-                    }) {
-                        HStack(spacing: 25) {
-                            Image(systemName: "heart.circle.fill")
-                                .foregroundColor(self.index == 2 ? Color(colorDesign.buttonColor) : Color.white)
-                            Text("Наші магазини")
-                                .foregroundColor(self.index == 2 ? Color(colorDesign.buttonColor) : Color.white)
-                        }
-                        .padding(.vertical, 10)
-                        .padding(.horizontal)
-                        .background(self.index == 2 ? Color(colorDesign.buttonColor).opacity(0.2) : Color.clear)
-                        .cornerRadius(10)
-                    }
-                    Button(action: {
-                        self.index = 3
-                        
-                        withAnimation {
-                            self.show.toggle()
-                        }
-                    }) {
-                        HStack(spacing: 25) {
-                            Image(systemName: "wallet.pass.fill")
-                                .foregroundColor(self.index == 3 ? Color(colorDesign.buttonColor) : Color.white)
-                            Text("Міні-гра")
-                                .foregroundColor(self.index == 3 ? Color(colorDesign.buttonColor) : Color.white)
-                        }
-                        .padding(.vertical, 10)
-                        .padding(.horizontal)
-                        .background(self.index == 3 ? Color(colorDesign.buttonColor).opacity(0.2) : Color.clear)
-                        .cornerRadius(10)
-                    }
-                    
-                    Divider()
-                        .frame(width: 150, height: 1)
-                        .background(Color.white)
-                        .padding(.vertical, 30)
-                    
-                    Button(action: {
-                        self.indexForMenu = 1
-                    }) {
-                        HStack {
-                            Image(systemName: "delete.right.fill")
-                                .foregroundColor(.white)
-                            Text("Вихід")
-                                .foregroundColor(.white)
-                        }
-                        .padding(.vertical, 10)
-                        .padding(.horizontal)
-                    }
-                    
-                    Spacer(minLength: 0)
-                }
-                .padding(.top, 25)
-                .padding(.horizontal, 20)
-                Spacer(minLength: 0)
-            }
-            .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
-            .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+            
+            MenuButtonsView(userName: self.$userName, index: self.$index, indexForMenu: self.$indexForMenu, show: self.$show)
             
             ZStack {
-                
                 switch index {
                 case 0:
                     Catalogue(show: self.$show, sale: self.$sale, userOrder: self.userOrder)
@@ -1162,4 +1044,137 @@ class Sale: ObservableObject {
         }
     }
     
+}
+
+struct MenuButtonsView: View {
+    
+    let colorDesign = ColorUIMagazzine()
+
+    @Binding var userName: String
+    @Binding var index: Int
+    @Binding var indexForMenu: Int
+    @Binding var show: Bool
+
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 12) {
+                Image("UserAvatar1")
+                    .resizable()
+                    .frame(width: 250, height: 250)
+                    .clipShape(Circle())
+                
+                Text("Привіт,")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding(.top, 10)
+                
+                Text(userName)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                
+                Button(action: {
+                    self.index = 0
+                    
+                    withAnimation {
+                        self.show.toggle()
+                    }
+                }) {
+                    HStack(spacing: 25) {
+                        Image(systemName: "bookmark.circle.fill")
+                            .foregroundColor(self.index == 0 ? Color(colorDesign.buttonColor) : Color.white)
+                        Text("Каталог")
+                            .foregroundColor(self.index == 0 ? Color(colorDesign.buttonColor) : Color.white)
+                    }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
+                    .background(self.index == 0 ? Color(colorDesign.buttonColor).opacity(0.2) : Color.clear)
+                    .cornerRadius(10)
+                }
+                .padding(.top, 25)
+                
+                Button(action: {
+                    self.index = 1
+                    
+                    withAnimation {
+                        self.show.toggle()
+                    }
+                }) {
+                    HStack(spacing: 25) {
+                        Image(systemName: "bag.circle.fill")
+                            .foregroundColor(self.index == 1 ? Color(colorDesign.buttonColor) : Color.white)
+                        Text("Мої замовлення")
+                            .foregroundColor(self.index == 1 ? Color(colorDesign.buttonColor) : Color.white)
+                    }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
+                    .background(self.index == 1 ? Color(colorDesign.buttonColor).opacity(0.2) : Color.clear)
+                    .cornerRadius(10)
+                }
+                Button(action: {
+                    self.index = 2
+                    
+                    withAnimation {
+                        self.show.toggle()
+                    }
+                }) {
+                    HStack(spacing: 25) {
+                        Image(systemName: "heart.circle.fill")
+                            .foregroundColor(self.index == 2 ? Color(colorDesign.buttonColor) : Color.white)
+                        Text("Наші магазини")
+                            .foregroundColor(self.index == 2 ? Color(colorDesign.buttonColor) : Color.white)
+                    }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
+                    .background(self.index == 2 ? Color(colorDesign.buttonColor).opacity(0.2) : Color.clear)
+                    .cornerRadius(10)
+                }
+                Button(action: {
+                    self.index = 3
+                    
+                    withAnimation {
+                        self.show.toggle()
+                    }
+                }) {
+                    HStack(spacing: 25) {
+                        Image(systemName: "wallet.pass.fill")
+                            .foregroundColor(self.index == 3 ? Color(colorDesign.buttonColor) : Color.white)
+                        Text("Міні-гра")
+                            .foregroundColor(self.index == 3 ? Color(colorDesign.buttonColor) : Color.white)
+                    }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
+                    .background(self.index == 3 ? Color(colorDesign.buttonColor).opacity(0.2) : Color.clear)
+                    .cornerRadius(10)
+                }
+                
+                Divider()
+                    .frame(width: 150, height: 1)
+                    .background(Color.white)
+                    .padding(.vertical, 30)
+                
+                Button(action: {
+                    self.indexForMenu = 1
+                }) {
+                    HStack {
+                        Image(systemName: "delete.right.fill")
+                            .foregroundColor(.white)
+                        Text("Вихід")
+                            .foregroundColor(.white)
+                    }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
+                }
+                
+                Spacer(minLength: 0)
+            }
+            .padding(.top, 25)
+            .padding(.horizontal, 20)
+            Spacer(minLength: 0)
+        }
+        .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
+        .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+    }
 }
